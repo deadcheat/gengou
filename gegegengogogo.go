@@ -3,7 +3,7 @@ package gegegengogogo
 import "time"
 
 // GengoCode is a type alias for using Codes of 元号
-type GengoCode int8
+type GengoCode int
 
 const (
 	code GengoCode = iota
