@@ -11,7 +11,9 @@ const (
 
 // Gengo is an entity of 元号
 type Gengo struct {
+	C    GengoCode
 	Name string
+	Kana string
 	From time.Time
 	To   time.Time
 }
