@@ -52,5 +52,4 @@ func parseDate(str string) time.Time {
 	day, _ := strconv.Atoi(s[2])
 
 	return time.Date(year, time.Month(month), day, 0, 0, 0, 0, loc)
-
 }
