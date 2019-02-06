@@ -10,7 +10,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/deadcheat/gegegengogogo"
+	"github.com/deadcheat/gengou"
 )
 
 func main() {
@@ -24,12 +24,12 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	gengos := make([]gegegengogogo.Gengo, 0)
+	gengos := make([]gengou.Gengo, 0)
 	for i := range records {
 		from := parseDate(records[i][3])
 		to := parseDate(records[i][4])
-		g := gegegengogogo.Gengo{
-			C:    gegegengogogo.GengoCodeFromString(records[i][0]),
+		g := gengou.Gengo{
+			C:    gengou.GengoCodeFromString(records[i][0]),
 			Name: records[i][1],
 			Kana: records[i][2],
 			From: from,
