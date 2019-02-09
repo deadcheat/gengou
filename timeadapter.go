@@ -2,8 +2,8 @@ package gengou
 
 import "time"
 
-// TA is a variable for TimeAdapter to be injected
-var TA TimeAdapter = &LocalTimeAdapter{}
+// ta is a variable for TimeAdapter to be injected
+var ta TimeAdapter = &LocalTimeAdapter{}
 
 // TimeAdapter is an interface for inject time package
 type TimeAdapter interface {
