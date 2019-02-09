@@ -15,7 +15,7 @@ var DefaultTime = time.Date(1, 1, 1, 0, 0, 0, 0, time.Local)
 
 // ParseSlashedYMD will parse y/m/d(in Go, 2006/1/2) style date string
 func ParseSlashedYMD(str string) (time.Time, error) {
-	loc, err := time.LoadLocation("Asia/Tokyo")
+	loc, err := ta.LoadLocation("Asia/Tokyo")
 	if err != nil {
 		return DefaultTime, err
 	}
