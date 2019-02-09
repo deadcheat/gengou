@@ -1,44 +1,60 @@
 package gengou
 
 import (
+	"errors"
 	"reflect"
 	"testing"
 	"time"
+
+	"github.com/deadcheat/gengou/mocks"
+	"github.com/golang/mock/gomock"
 )
 
-func TestParseSlashedYMD(t *testing.T) {
+func TestParseSlashedYMDReturnsDateSuccessfully(t *testing.T) {
 	loc, err := time.LoadLocation("Asia/Tokyo")
 	if err != nil {
 		t.Error("error occurred when time.LoadLocation")
 	}
-	type args struct {
-		str string
+
+	testee := "645/03/02"
+	expect := time.Date(645, 3, 2, 0, 0, 0, 0, loc)
+
+	actual, err := ParseSlashedYMD(testee)
+	if err != nil {
+		t.Errorf("ParseSlashedYMD should not return any error but %+v", err)
 	}
-	tests := []struct {
-		name    string
-		args    args
-		want    time.Time
-		wantErr bool
-	}{
-		{
-			"success pattern",
-			args{
-				"645/03/02",
-			},
-			time.Date(645, 3, 2, 0, 0, 0, 0, loc),
-			false,
-		},
+
+	if !reflect.DeepEqual(expect, actual) {
+		t.Errorf(`ParseSlashedYMD returned unexpected value
+	expected: %+v
+	actual  : %+v
+`, expect, actual)
 	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			got, err := ParseSlashedYMD(tt.args.str)
-			if (err != nil) != tt.wantErr {
-				t.Errorf("ParseSlashedYMD() error = %v, wantErr %v", err, tt.wantErr)
-				return
-			}
-			if !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("ParseSlashedYMD() = %v, want %v", got, tt.want)
-			}
-		})
+}
+
+func TestParseSlashedYMDShouldReturnErrorWhenFailedLoadLocation(t *testing.T) {
+
+	c := gomock.NewController(t)
+	m := mocks.NewMockTimeAdapter(c)
+	m.EXPECT().LoadLocation("Asia/Tokyo").Return(nil, errors.New("test error"))
+
+	tmpTa := ta
+	ta = m
+
+	testee := "645/03/02"
+	expect := DefaultTime
+
+	actual, err := ParseSlashedYMD(testee)
+	if err == nil {
+		t.Errorf("ParseSlashedYMD should return error")
 	}
+
+	if !reflect.DeepEqual(expect, actual) {
+		t.Errorf(`ParseSlashedYMD returned unexpected value
+	expected: %+v
+	actual  : %+v
+`, expect, actual)
+	}
+
+	ta = tmpTa
 }
