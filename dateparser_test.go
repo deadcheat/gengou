@@ -58,3 +58,22 @@ func TestParseSlashedYMDShouldReturnErrorWhenFailedLoadLocation(t *testing.T) {
 
 	ta = tmpTa
 }
+
+func TestParseSlashedYMDShouldReturnErrorWhenIllegalYMDFormat(t *testing.T) {
+
+	expect := DefaultTime
+
+	// testee contains less than 2 slashes
+	testee := "645/03"
+	actual, err := ParseSlashedYMD(testee)
+	if err == nil {
+		t.Errorf("ParseSlashedYMD should return error")
+	}
+
+	if !reflect.DeepEqual(expect, actual) {
+		t.Errorf(`ParseSlashedYMD returned unexpected value
+	expected: %+v
+	actual  : %+v
+`, expect, actual)
+	}
+}
