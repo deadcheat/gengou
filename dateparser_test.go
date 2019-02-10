@@ -90,4 +90,18 @@ func TestParseSlashedYMDShouldReturnErrorWhenIllegalYMDFormat(t *testing.T) {
 	actual  : %+v
 `, expect, actual)
 	}
+
+	// month is not number
+	testee = "645/fdfd/02"
+	actual, err = ParseSlashedYMD(testee)
+	if err == nil {
+		t.Errorf("ParseSlashedYMD should return error")
+	}
+
+	if !reflect.DeepEqual(expect, actual) {
+		t.Errorf(`ParseSlashedYMD returned unexpected value
+	expected: %+v
+	actual  : %+v
+`, expect, actual)
+	}
 }
