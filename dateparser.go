@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-// ErrStringIsNotSlashed pre-defined error that will be returned when given string doesn't satisfy y/m/d format
+// ErrStringIsNotSatisfiedFormat pre-defined error that will be returned when given string doesn't satisfy y/m/d format
 var ErrStringIsNotSatisfiedFormat = errors.New("given string does not satisfy y/m/d format")
 
 // DefaultTime pre-defined default time.Date value
