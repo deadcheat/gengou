@@ -21,7 +21,7 @@ func GengoCodeToString(c GengoCode) string {
 // MarshalJSON marshals the enum as a quoted json string
 func (c GengoCode) MarshalJSON() ([]byte, error) {
 	buffer := bytes.NewBufferString(`"`)
-	buffer.WriteString(strMap[c])
+	buffer.WriteString(GengoCodeToString(c))
 	buffer.WriteString(`"`)
 	return buffer.Bytes(), nil
 }
@@ -29,12 +29,8 @@ func (c GengoCode) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON unmashals a quoted json string to the enum value
 func (c *GengoCode) UnmarshalJSON(b []byte) error {
 	var j string
-	err := json.Unmarshal(b, &j)
-	if err != nil {
-		return err
-	}
-	// Note that if the string cannot be found then it will be set to the zero value, 'Created' in this case.
-	*c = idMap[j]
+	_ = json.Unmarshal(b, &j)
+	*c = GengoCodeFromString(j)
 	return nil
 }
 
