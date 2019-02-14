@@ -3,7 +3,244 @@ package gengou
 import "time"
 
 var (
-	jst       = time.FixedZone("Asia/Tokyo", 9*60*60)
+	jst                 = time.FixedZone("Asia/Tokyo", 9*60*60)
+	nanbokueraFrom      = time.Date(1329, time.September, 22, 0, 0, 0, 0, jst)
+	nanbokueraTo        = time.Date(1394, time.August, 2, 0, 0, 0, 0, jst)
+	gengoDataNanbokuEra = []Gengo{
+
+		// from
+		Gengo{
+			C:    153,
+			Name: "元徳（大覚寺統）",
+			Kana: "げんとく",
+			From: time.Date(1329, time.September, 22, 0, 0, 0, 0, jst),
+			To:   time.Date(1331, time.September, 11, 0, 0, 0, 0, jst),
+		},
+
+		Gengo{
+			C:    154,
+			Name: "元徳（持明院統）",
+			Kana: "げんとく",
+			From: time.Date(1329, time.September, 22, 0, 0, 0, 0, jst),
+			To:   time.Date(1332, time.May, 23, 0, 0, 0, 0, jst),
+		},
+
+		Gengo{
+			C:    155,
+			Name: "元弘",
+			Kana: "げんこう",
+			From: time.Date(1331, time.September, 11, 0, 0, 0, 0, jst),
+			To:   time.Date(1334, time.March, 5, 0, 0, 0, 0, jst),
+		},
+
+		Gengo{
+			C:    156,
+			Name: "建武（南朝）",
+			Kana: "けんむ",
+			From: time.Date(1334, time.March, 5, 0, 0, 0, 0, jst),
+			To:   time.Date(1336, time.April, 11, 0, 0, 0, 0, jst),
+		},
+
+		Gengo{
+			C:    157,
+			Name: "延元（南朝）",
+			Kana: "えんげん",
+			From: time.Date(1336, time.April, 11, 0, 0, 0, 0, jst),
+			To:   time.Date(1340, time.May, 25, 0, 0, 0, 0, jst),
+		},
+
+		Gengo{
+			C:    158,
+			Name: "興国（南朝）",
+			Kana: "こうこく",
+			From: time.Date(1340, time.May, 25, 0, 0, 0, 0, jst),
+			To:   time.Date(1347, time.January, 20, 0, 0, 0, 0, jst),
+		},
+
+		Gengo{
+			C:    159,
+			Name: "正平（南朝）",
+			Kana: "しょうへい",
+			From: time.Date(1347, time.January, 20, 0, 0, 0, 0, jst),
+			To:   time.Date(1370, time.August, 16, 0, 0, 0, 0, jst),
+		},
+
+		Gengo{
+			C:    160,
+			Name: "建徳（南朝）",
+			Kana: "けんとく",
+			From: time.Date(1370, time.August, 16, 0, 0, 0, 0, jst),
+			To:   time.Date(1372, time.April, 30, 0, 0, 0, 0, jst),
+		},
+
+		Gengo{
+			C:    161,
+			Name: "文中（南朝）",
+			Kana: "ぶんちゅう",
+			From: time.Date(1372, time.April, 30, 0, 0, 0, 0, jst),
+			To:   time.Date(1375, time.June, 26, 0, 0, 0, 0, jst),
+		},
+
+		Gengo{
+			C:    162,
+			Name: "天授（南朝）",
+			Kana: "てんじゅ",
+			From: time.Date(1375, time.June, 26, 0, 0, 0, 0, jst),
+			To:   time.Date(1381, time.March, 6, 0, 0, 0, 0, jst),
+		},
+
+		Gengo{
+			C:    163,
+			Name: "弘和（南朝）",
+			Kana: "こうわ",
+			From: time.Date(1381, time.March, 6, 0, 0, 0, 0, jst),
+			To:   time.Date(1384, time.May, 18, 0, 0, 0, 0, jst),
+		},
+
+		Gengo{
+			C:    164,
+			Name: "元中（南朝）",
+			Kana: "げんちゅう",
+			From: time.Date(1384, time.May, 18, 0, 0, 0, 0, jst),
+			To:   time.Date(1392, time.November, 19, 0, 0, 0, 0, jst),
+		},
+
+		Gengo{
+			C:    165,
+			Name: "建武（北朝）",
+			Kana: "けんむ",
+			From: time.Date(1334, time.March, 5, 0, 0, 0, 0, jst),
+			To:   time.Date(1338, time.October, 11, 0, 0, 0, 0, jst),
+		},
+
+		Gengo{
+			C:    166,
+			Name: "暦応（北朝）",
+			Kana: "りゃくおう/れきおう",
+			From: time.Date(1338, time.October, 11, 0, 0, 0, 0, jst),
+			To:   time.Date(1342, time.June, 1, 0, 0, 0, 0, jst),
+		},
+
+		Gengo{
+			C:    167,
+			Name: "康永（北朝）",
+			Kana: "こうえい",
+			From: time.Date(1342, time.June, 1, 0, 0, 0, 0, jst),
+			To:   time.Date(1345, time.November, 15, 0, 0, 0, 0, jst),
+		},
+
+		Gengo{
+			C:    168,
+			Name: "貞和（北朝）",
+			Kana: "じょうわ/ていわ",
+			From: time.Date(1345, time.November, 15, 0, 0, 0, 0, jst),
+			To:   time.Date(1350, time.April, 4, 0, 0, 0, 0, jst),
+		},
+
+		Gengo{
+			C:    169,
+			Name: "観応（北朝）",
+			Kana: "かんのう/かんおう",
+			From: time.Date(1350, time.April, 4, 0, 0, 0, 0, jst),
+			To:   time.Date(1352, time.November, 4, 0, 0, 0, 0, jst),
+		},
+
+		Gengo{
+			C:    170,
+			Name: "文和（北朝）",
+			Kana: "ぶんな/ぶんわ",
+			From: time.Date(1352, time.November, 4, 0, 0, 0, 0, jst),
+			To:   time.Date(1356, time.April, 29, 0, 0, 0, 0, jst),
+		},
+
+		Gengo{
+			C:    171,
+			Name: "延文（北朝）",
+			Kana: "えんぶん",
+			From: time.Date(1356, time.April, 29, 0, 0, 0, 0, jst),
+			To:   time.Date(1361, time.May, 4, 0, 0, 0, 0, jst),
+		},
+
+		Gengo{
+			C:    172,
+			Name: "康安（北朝）",
+			Kana: "こうあん",
+			From: time.Date(1361, time.May, 4, 0, 0, 0, 0, jst),
+			To:   time.Date(1362, time.October, 11, 0, 0, 0, 0, jst),
+		},
+
+		Gengo{
+			C:    173,
+			Name: "貞治（北朝）",
+			Kana: "じょうじ/ていじ",
+			From: time.Date(1362, time.October, 11, 0, 0, 0, 0, jst),
+			To:   time.Date(1368, time.March, 7, 0, 0, 0, 0, jst),
+		},
+
+		Gengo{
+			C:    174,
+			Name: "応安（北朝）",
+			Kana: "おうあん",
+			From: time.Date(1368, time.March, 7, 0, 0, 0, 0, jst),
+			To:   time.Date(1375, time.March, 29, 0, 0, 0, 0, jst),
+		},
+
+		Gengo{
+			C:    175,
+			Name: "永和（北朝）",
+			Kana: "えいわ",
+			From: time.Date(1375, time.March, 29, 0, 0, 0, 0, jst),
+			To:   time.Date(1379, time.April, 9, 0, 0, 0, 0, jst),
+		},
+
+		Gengo{
+			C:    176,
+			Name: "康暦（北朝）",
+			Kana: "こうりゃく",
+			From: time.Date(1379, time.April, 9, 0, 0, 0, 0, jst),
+			To:   time.Date(1381, time.March, 20, 0, 0, 0, 0, jst),
+		},
+
+		Gengo{
+			C:    177,
+			Name: "永徳（北朝）",
+			Kana: "えいとく",
+			From: time.Date(1381, time.March, 20, 0, 0, 0, 0, jst),
+			To:   time.Date(1384, time.March, 19, 0, 0, 0, 0, jst),
+		},
+
+		Gengo{
+			C:    178,
+			Name: "至徳（北朝）",
+			Kana: "しとく",
+			From: time.Date(1384, time.March, 19, 0, 0, 0, 0, jst),
+			To:   time.Date(1387, time.October, 5, 0, 0, 0, 0, jst),
+		},
+
+		Gengo{
+			C:    179,
+			Name: "嘉慶（北朝）",
+			Kana: "かきょう/かけい",
+			From: time.Date(1387, time.October, 5, 0, 0, 0, 0, jst),
+			To:   time.Date(1389, time.March, 7, 0, 0, 0, 0, jst),
+		},
+
+		Gengo{
+			C:    180,
+			Name: "康応（北朝）",
+			Kana: "こうおう",
+			From: time.Date(1389, time.March, 7, 0, 0, 0, 0, jst),
+			To:   time.Date(1390, time.April, 12, 0, 0, 0, 0, jst),
+		},
+
+		Gengo{
+			C:    181,
+			Name: "明徳",
+			Kana: "めいとく",
+			From: time.Date(1390, time.April, 12, 0, 0, 0, 0, jst),
+			To:   time.Date(1394, time.August, 2, 0, 0, 0, 0, jst),
+		},
+	}
 	gengoData = []Gengo{
 
 		Gengo{
@@ -1228,238 +1465,6 @@ var (
 			Kana: "かりゃく",
 			From: time.Date(1326, time.May, 28, 0, 0, 0, 0, jst),
 			To:   time.Date(1329, time.September, 22, 0, 0, 0, 0, jst),
-		},
-
-		Gengo{
-			C:    153,
-			Name: "元徳（大覚寺統）",
-			Kana: "げんとく",
-			From: time.Date(1329, time.September, 22, 0, 0, 0, 0, jst),
-			To:   time.Date(1331, time.September, 11, 0, 0, 0, 0, jst),
-		},
-
-		Gengo{
-			C:    154,
-			Name: "元徳（持明院統）",
-			Kana: "げんとく",
-			From: time.Date(1329, time.September, 22, 0, 0, 0, 0, jst),
-			To:   time.Date(1332, time.May, 23, 0, 0, 0, 0, jst),
-		},
-
-		Gengo{
-			C:    155,
-			Name: "元弘",
-			Kana: "げんこう",
-			From: time.Date(1331, time.September, 11, 0, 0, 0, 0, jst),
-			To:   time.Date(1334, time.March, 5, 0, 0, 0, 0, jst),
-		},
-
-		Gengo{
-			C:    156,
-			Name: "建武（南朝）",
-			Kana: "けんむ",
-			From: time.Date(1334, time.March, 5, 0, 0, 0, 0, jst),
-			To:   time.Date(1336, time.April, 11, 0, 0, 0, 0, jst),
-		},
-
-		Gengo{
-			C:    157,
-			Name: "延元（南朝）",
-			Kana: "えんげん",
-			From: time.Date(1336, time.April, 11, 0, 0, 0, 0, jst),
-			To:   time.Date(1340, time.May, 25, 0, 0, 0, 0, jst),
-		},
-
-		Gengo{
-			C:    158,
-			Name: "興国（南朝）",
-			Kana: "こうこく",
-			From: time.Date(1340, time.May, 25, 0, 0, 0, 0, jst),
-			To:   time.Date(1347, time.January, 20, 0, 0, 0, 0, jst),
-		},
-
-		Gengo{
-			C:    159,
-			Name: "正平（南朝）",
-			Kana: "しょうへい",
-			From: time.Date(1347, time.January, 20, 0, 0, 0, 0, jst),
-			To:   time.Date(1370, time.August, 16, 0, 0, 0, 0, jst),
-		},
-
-		Gengo{
-			C:    160,
-			Name: "建徳（南朝）",
-			Kana: "けんとく",
-			From: time.Date(1370, time.August, 16, 0, 0, 0, 0, jst),
-			To:   time.Date(1372, time.April, 30, 0, 0, 0, 0, jst),
-		},
-
-		Gengo{
-			C:    161,
-			Name: "文中（南朝）",
-			Kana: "ぶんちゅう",
-			From: time.Date(1372, time.April, 30, 0, 0, 0, 0, jst),
-			To:   time.Date(1375, time.June, 26, 0, 0, 0, 0, jst),
-		},
-
-		Gengo{
-			C:    162,
-			Name: "天授（南朝）",
-			Kana: "てんじゅ",
-			From: time.Date(1375, time.June, 26, 0, 0, 0, 0, jst),
-			To:   time.Date(1381, time.March, 6, 0, 0, 0, 0, jst),
-		},
-
-		Gengo{
-			C:    163,
-			Name: "弘和（南朝）",
-			Kana: "こうわ",
-			From: time.Date(1381, time.March, 6, 0, 0, 0, 0, jst),
-			To:   time.Date(1384, time.May, 18, 0, 0, 0, 0, jst),
-		},
-
-		Gengo{
-			C:    164,
-			Name: "元中（南朝）",
-			Kana: "げんちゅう",
-			From: time.Date(1384, time.May, 18, 0, 0, 0, 0, jst),
-			To:   time.Date(1392, time.November, 19, 0, 0, 0, 0, jst),
-		},
-
-		Gengo{
-			C:    165,
-			Name: "建武（北朝）",
-			Kana: "けんむ",
-			From: time.Date(1334, time.March, 5, 0, 0, 0, 0, jst),
-			To:   time.Date(1338, time.October, 11, 0, 0, 0, 0, jst),
-		},
-
-		Gengo{
-			C:    166,
-			Name: "暦応（北朝）",
-			Kana: "りゃくおう/れきおう",
-			From: time.Date(1338, time.October, 11, 0, 0, 0, 0, jst),
-			To:   time.Date(1342, time.June, 1, 0, 0, 0, 0, jst),
-		},
-
-		Gengo{
-			C:    167,
-			Name: "康永（北朝）",
-			Kana: "こうえい",
-			From: time.Date(1342, time.June, 1, 0, 0, 0, 0, jst),
-			To:   time.Date(1345, time.November, 15, 0, 0, 0, 0, jst),
-		},
-
-		Gengo{
-			C:    168,
-			Name: "貞和（北朝）",
-			Kana: "じょうわ/ていわ",
-			From: time.Date(1345, time.November, 15, 0, 0, 0, 0, jst),
-			To:   time.Date(1350, time.April, 4, 0, 0, 0, 0, jst),
-		},
-
-		Gengo{
-			C:    169,
-			Name: "観応（北朝）",
-			Kana: "かんのう/かんおう",
-			From: time.Date(1350, time.April, 4, 0, 0, 0, 0, jst),
-			To:   time.Date(1352, time.November, 4, 0, 0, 0, 0, jst),
-		},
-
-		Gengo{
-			C:    170,
-			Name: "文和（北朝）",
-			Kana: "ぶんな/ぶんわ",
-			From: time.Date(1352, time.November, 4, 0, 0, 0, 0, jst),
-			To:   time.Date(1356, time.April, 29, 0, 0, 0, 0, jst),
-		},
-
-		Gengo{
-			C:    171,
-			Name: "延文（北朝）",
-			Kana: "えんぶん",
-			From: time.Date(1356, time.April, 29, 0, 0, 0, 0, jst),
-			To:   time.Date(1361, time.May, 4, 0, 0, 0, 0, jst),
-		},
-
-		Gengo{
-			C:    172,
-			Name: "康安（北朝）",
-			Kana: "こうあん",
-			From: time.Date(1361, time.May, 4, 0, 0, 0, 0, jst),
-			To:   time.Date(1362, time.October, 11, 0, 0, 0, 0, jst),
-		},
-
-		Gengo{
-			C:    173,
-			Name: "貞治（北朝）",
-			Kana: "じょうじ/ていじ",
-			From: time.Date(1362, time.October, 11, 0, 0, 0, 0, jst),
-			To:   time.Date(1368, time.March, 7, 0, 0, 0, 0, jst),
-		},
-
-		Gengo{
-			C:    174,
-			Name: "応安（北朝）",
-			Kana: "おうあん",
-			From: time.Date(1368, time.March, 7, 0, 0, 0, 0, jst),
-			To:   time.Date(1375, time.March, 29, 0, 0, 0, 0, jst),
-		},
-
-		Gengo{
-			C:    175,
-			Name: "永和（北朝）",
-			Kana: "えいわ",
-			From: time.Date(1375, time.March, 29, 0, 0, 0, 0, jst),
-			To:   time.Date(1379, time.April, 9, 0, 0, 0, 0, jst),
-		},
-
-		Gengo{
-			C:    176,
-			Name: "康暦（北朝）",
-			Kana: "こうりゃく",
-			From: time.Date(1379, time.April, 9, 0, 0, 0, 0, jst),
-			To:   time.Date(1381, time.March, 20, 0, 0, 0, 0, jst),
-		},
-
-		Gengo{
-			C:    177,
-			Name: "永徳（北朝）",
-			Kana: "えいとく",
-			From: time.Date(1381, time.March, 20, 0, 0, 0, 0, jst),
-			To:   time.Date(1384, time.March, 19, 0, 0, 0, 0, jst),
-		},
-
-		Gengo{
-			C:    178,
-			Name: "至徳（北朝）",
-			Kana: "しとく",
-			From: time.Date(1384, time.March, 19, 0, 0, 0, 0, jst),
-			To:   time.Date(1387, time.October, 5, 0, 0, 0, 0, jst),
-		},
-
-		Gengo{
-			C:    179,
-			Name: "嘉慶（北朝）",
-			Kana: "かきょう/かけい",
-			From: time.Date(1387, time.October, 5, 0, 0, 0, 0, jst),
-			To:   time.Date(1389, time.March, 7, 0, 0, 0, 0, jst),
-		},
-
-		Gengo{
-			C:    180,
-			Name: "康応（北朝）",
-			Kana: "こうおう",
-			From: time.Date(1389, time.March, 7, 0, 0, 0, 0, jst),
-			To:   time.Date(1390, time.April, 12, 0, 0, 0, 0, jst),
-		},
-
-		Gengo{
-			C:    181,
-			Name: "明徳",
-			Kana: "めいとく",
-			From: time.Date(1390, time.April, 12, 0, 0, 0, 0, jst),
-			To:   time.Date(1394, time.August, 2, 0, 0, 0, 0, jst),
 		},
 
 		Gengo{
