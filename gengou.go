@@ -1,7 +1,6 @@
 package gengou
 
 import (
-	"fmt"
 	"time"
 )
 
@@ -16,18 +15,38 @@ type Gengo struct {
 
 // SearchGengo searches gengo from given yyyy/mm/dd string
 func SearchGengo(date string) ([]Gengo, error) {
-	result := make([]Gengo, 0)
 	t, err := ParseSlashedYMD(date)
 	if err != nil {
-		return result, err
+		return []Gengo{}, err
 	}
 
+	if (t.Equal(nanbokueraFrom) || t.After(nanbokueraFrom)) &&
+		(t.Equal(nanbokueraTo) || t.Before(nanbokueraTo)) {
+		return searchFromNanbokuchoEra(t), nil
+	}
+
+	return searchFromOtherEra(t), nil
+}
+
+func searchFromNanbokuchoEra(t time.Time) []Gengo {
+
+	result := make([]Gengo, 0)
+	for _, s := range gengoDataNanbokuEra {
+		if s.To.After(t) && (s.From.Before(t) || s.From.Equal(t)) {
+			result = append(result, s)
+		}
+	}
+
+	return result
+}
+
+func searchFromOtherEra(t time.Time) []Gengo {
+	result := make([]Gengo, 0)
 	min := 0
 	max := len(gengoData)
 	for {
 		si := (min + max) / 2
 		s := gengoData[si]
-		fmt.Println(min, max, si, s.Name, t, s.From, s.To)
 		if s.To.After(t) && (s.From.Before(t) || s.From.Equal(t)) {
 			result = append(result, s)
 		}
@@ -43,5 +62,5 @@ func SearchGengo(date string) ([]Gengo, error) {
 		min = si
 	}
 
-	return result, nil
+	return result
 }
