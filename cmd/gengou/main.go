@@ -27,7 +27,7 @@ func main() {
 
 					gengos := make([]gengou.Gengo, 0)
 					for i := range args {
-						pgs, err := gengou.SearchGengo(args[i])
+						pgs, err := gengou.FindGengo(args[i])
 						if err != nil {
 							log.Println(err)
 							continue
