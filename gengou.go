@@ -13,8 +13,8 @@ type Gengo struct {
 	To   time.Time `json:"to"`
 }
 
-// SearchGengo searches gengo from given yyyy/mm/dd string
-func SearchGengo(date string) ([]Gengo, error) {
+// FindGengo searches gengo from given yyyy/mm/dd string
+func FindGengo(date string) ([]Gengo, error) {
 	t, err := ParseSlashedYMD(date)
 	if err != nil {
 		return []Gengo{}, err
