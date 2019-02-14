@@ -1,6 +1,12 @@
 # gengou
 元号を　取得するやつ　つくりたい
 
+## INSTALL
+
+```
+go get github.com/deadcheat/gengou/...
+```
+
 ## USAGE
 ```
 $ gengou -h 
@@ -20,4 +26,20 @@ COMMANDS:
 GLOBAL OPTIONS:
    --help, -h     show help (default: false)
    --version, -v  print the version (default: false)
+```
+
+i.e,
+```
+gengou s 1345/4/17
+```
+will return
+```
+興国（南朝）
+康永（北朝）
+```
+gengou s 2019/4/17
+```
+will return
+```
+平成
 ```
