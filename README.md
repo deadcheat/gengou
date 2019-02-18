@@ -1,13 +1,45 @@
 # gengou
 元号を　取得するやつ　つくりたい
 
-## INSTALL
+## FOR LIBRARY
+### INSTALL
+
+```
+go get github.com/deadcheat/gengou
+```
+
+### HOW TO USE
+
+Give slashed-style year/month/day formatted string to `gengou.Find` func
+```
+package main
+
+import (
+	"fmt"
+
+	"github.com/deadcheat/gengou"
+)
+
+func main() {
+	s := "2019/2/5"
+	g, err := gengou.Find(s)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(g)
+}
+
+```
+
+## FOR STANDALONE CLI APP
+
+### INSTALL
 
 ```
 go get github.com/deadcheat/gengou/...
 ```
 
-## USAGE
+### USAGE
 ```
 $ gengou -h 
 NAME:
