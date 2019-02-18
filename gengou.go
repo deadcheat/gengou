@@ -1,36 +1,46 @@
 package gengou
 
 import (
+	"errors"
 	"time"
 )
 
-// Gengo is an entity of 元号
-type Gengo struct {
-	C    GengoCode `json:"code"`
-	Name string    `json:"name"`
-	Kana []string  `json:"kana"`
-	From time.Time `json:"from"`
-	To   time.Time `json:"to"`
+// Gengou is an entity of 元号
+type Gengou struct {
+	C    GengouCode `json:"code"`
+	Name string     `json:"name"`
+	Kana []string   `json:"kana"`
+	From time.Time  `json:"from"`
+	To   time.Time  `json:"to"`
 }
 
-// FindGengo searches gengo from given yyyy/mm/dd string
-func FindGengo(date string) ([]Gengo, error) {
-	t, err := ParseSlashedYMD(date)
+// NoSuchGengouFoundError will be returned when Find() given y/m/d didn't hit any gengou
+var NoSuchGengouFoundError = errors.New("no such gengou found")
+
+// Find searches gengo from given yyyy/mm/dd string
+func Find(date string) (result []Gengou, err error) {
+	var t time.Time
+	t, err = ParseSlashedYMD(date)
 	if err != nil {
-		return []Gengo{}, err
+		return result, err
 	}
 
 	if (t.Equal(nanbokueraFrom) || t.After(nanbokueraFrom)) &&
 		(t.Equal(nanbokueraTo) || t.Before(nanbokueraTo)) {
-		return searchFromNanbokuchoEra(t), nil
+		result = searchFromNanbokuchoEra(t)
+	} else {
+		result = searchFromOtherEra(t)
 	}
 
-	return searchFromOtherEra(t), nil
+	if len(result) == 0 {
+		return result, NoSuchGengouFoundError
+	}
+	return result, nil
 }
 
-func searchFromNanbokuchoEra(t time.Time) []Gengo {
+func searchFromNanbokuchoEra(t time.Time) []Gengou {
 
-	result := make([]Gengo, 0)
+	result := make([]Gengou, 0)
 	for _, s := range gengoDataNanbokuEra {
 		if s.To.After(t) && (s.From.Before(t) || s.From.Equal(t)) {
 			result = append(result, s)
@@ -40,8 +50,8 @@ func searchFromNanbokuchoEra(t time.Time) []Gengo {
 	return result
 }
 
-func searchFromOtherEra(t time.Time) []Gengo {
-	result := make([]Gengo, 0)
+func searchFromOtherEra(t time.Time) []Gengou {
+	result := make([]Gengou, 0)
 	min := 0
 	max := len(gengoData)
 	for {

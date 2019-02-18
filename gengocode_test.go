@@ -6,13 +6,13 @@ import (
 	"testing"
 )
 
-func TestGengoCodeMarshaller(t *testing.T) {
+func TestGengouCodeMarshaller(t *testing.T) {
 	d, err := json.Marshal(idMap)
 	if err != nil {
 		t.Error("error occurred when json.Marshal")
 	}
 
-	result := make(map[string]GengoCode)
+	result := make(map[string]GengouCode)
 	if err := json.Unmarshal(d, &result); err != nil {
 		t.Error("error occurred when json.Unmarshal")
 	}

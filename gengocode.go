@@ -5,37 +5,37 @@ import (
 	"encoding/json"
 )
 
-// GengoCode is a type alias for using Codes of 元号
-type GengoCode int
+// GengouCode is a type alias for using Codes of 元号
+type GengouCode int
 
-// GengoCodeFromString get code from string
-func GengoCodeFromString(s string) GengoCode {
+// GengouCodeFromString get code from string
+func GengouCodeFromString(s string) GengouCode {
 	return idMap[s]
 }
 
-// GengoCodeToString make code to string
-func GengoCodeToString(c GengoCode) string {
+// GengouCodeToString make code to string
+func GengouCodeToString(c GengouCode) string {
 	return strMap[c]
 }
 
 // MarshalJSON marshals the enum as a quoted json string
-func (c GengoCode) MarshalJSON() ([]byte, error) {
+func (c GengouCode) MarshalJSON() ([]byte, error) {
 	buffer := bytes.NewBufferString(`"`)
-	buffer.WriteString(GengoCodeToString(c))
+	buffer.WriteString(GengouCodeToString(c))
 	buffer.WriteString(`"`)
 	return buffer.Bytes(), nil
 }
 
 // UnmarshalJSON unmashals a quoted json string to the enum value
-func (c *GengoCode) UnmarshalJSON(b []byte) error {
+func (c *GengouCode) UnmarshalJSON(b []byte) error {
 	var j string
 	_ = json.Unmarshal(b, &j)
-	*c = GengoCodeFromString(j)
+	*c = GengouCodeFromString(j)
 	return nil
 }
 
 const (
-	Taika GengoCode = iota
+	Taika GengouCode = iota
 	Hakuchi
 	ShuchouSuchouAkamidori
 	TaihouDaihou
@@ -285,7 +285,7 @@ const (
 	Heisei
 )
 
-var idMap = map[string]GengoCode{
+var idMap = map[string]GengouCode{
 	"Taika":                  Taika,
 	"Hakuchi":                Hakuchi,
 	"ShuchouSuchouAkamidori": ShuchouSuchouAkamidori,
@@ -536,7 +536,7 @@ var idMap = map[string]GengoCode{
 	"Heisei":                 Heisei,
 }
 
-var strMap = map[GengoCode]string{
+var strMap = map[GengouCode]string{
 	Taika:                  "Taika",
 	Hakuchi:                "Hakuchi",
 	ShuchouSuchouAkamidori: "ShuchouSuchouAkamidori",

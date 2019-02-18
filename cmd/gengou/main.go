@@ -3,7 +3,6 @@ package main
 import (
 	"errors"
 	"fmt"
-	"log"
 	"os"
 
 	"github.com/deadcheat/gengou"
@@ -25,11 +24,11 @@ func main() {
 						return errors.New("no args are found")
 					}
 
-					gengos := make([]gengou.Gengo, 0)
+					gengos := make([]gengou.Gengou, 0)
 					for i := range args {
-						pgs, err := gengou.FindGengo(args[i])
+						pgs, err := gengou.Find(args[i])
 						if err != nil {
-							log.Println(err)
+							fmt.Println(err)
 							continue
 						}
 						gengos = append(gengos, pgs...)
@@ -45,7 +44,7 @@ func main() {
 		},
 	}
 	if err := app.Run(os.Args); err != nil {
-		log.Println(err)
+		fmt.Println(err)
 		os.Exit(1)
 	}
 	os.Exit(0)
