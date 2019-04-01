@@ -283,6 +283,7 @@ const (
 	Taishou
 	Shouwa1926
 	Heisei
+	Reiwa
 )
 
 var idMap = map[string]GengouCode{
@@ -534,6 +535,7 @@ var idMap = map[string]GengouCode{
 	"Taishou":                Taishou,
 	"Shouwa1926":             Shouwa1926,
 	"Heisei":                 Heisei,
+	"Reiwa":                  Reiwa,
 }
 
 var strMap = map[GengouCode]string{
@@ -785,4 +787,5 @@ var strMap = map[GengouCode]string{
 	Taishou:                "Taishou",
 	Shouwa1926:             "Shouwa1926",
 	Heisei:                 "Heisei",
+	Reiwa:                  "Reiwa",
 }
