@@ -1992,7 +1992,15 @@ var (
 			Name: "平成",
 			Kana: []string{"へいせい"},
 			From: time.Date(1989, time.January, 8, 0, 0, 0, 0, jst),
-			To:   time.Date(2019, time.April, 30, 0, 0, 0, 0, jst),
+			To:   time.Date(2019, time.May, 1, 0, 0, 0, 0, jst),
+		},
+
+		Gengou{
+			C:    248,
+			Name: "令和",
+			Kana: []string{"れいわ"},
+			From: time.Date(2019, time.May, 1, 0, 0, 0, 0, jst),
+			To:   time.Date(2100, time.January, 1, 0, 0, 0, 0, jst),
 		},
 	}
 )
