@@ -291,7 +291,9 @@ const (
 var idMap = map[string]GengouCode{
 	"Taika":          Taika,
 	"Hakuchi":        Hakuchi,
+	"Undecided0654":  Undecided0654,
 	"Shuchou":        Shuchou,
+	"Undecided0686":  Undecided0686,
 	"Taihou":         Taihou,
 	"Keiun":          Keiun,
 	"Wadou":          Wadou,
@@ -543,7 +545,9 @@ var idMap = map[string]GengouCode{
 var strMap = map[GengouCode]string{
 	Taika:          "Taika",
 	Hakuchi:        "Hakuchi",
+	Undecided0654:  "Undecided0654",
 	Shuchou:        "Shuchou",
+	Undecided0686:  "Undecided0686",
 	Taihou:         "Taihou",
 	Keiun:          "Keiun",
 	Wadou:          "Wadou",
