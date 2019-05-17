@@ -76,7 +76,7 @@ const (
 	Tentoku
 	Ouwa
 	Kouhou
-	AnnnaAnwa
+	Annna
 	Tenroku
 	Tennen
 	Jougen976
@@ -330,7 +330,7 @@ var idMap = map[string]GengouCode{
 	"Tentoku":        Tentoku,
 	"Ouwa":           Ouwa,
 	"Kouhou":         Kouhou,
-	"AnnnaAnwa":      AnnnaAnwa,
+	"Annna":          Annna,
 	"Tenroku":        Tenroku,
 	"Tennen":         Tennen,
 	"Jougen976":      Jougen976,
@@ -584,7 +584,7 @@ var strMap = map[GengouCode]string{
 	Tentoku:        "Tentoku",
 	Ouwa:           "Ouwa",
 	Kouhou:         "Kouhou",
-	AnnnaAnwa:      "AnnnaAnwa",
+	Annna:          "Annna",
 	Tenroku:        "Tenroku",
 	Tennen:         "Tennen",
 	Jougen976:      "Jougen976",
