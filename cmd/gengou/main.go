@@ -49,28 +49,32 @@ func main() {
 				Usage:   "start gengou server that serves JSON Response with /year/month/day url",
 				Flags: []cli.Flag{
 					&cli.StringFlag{
-						Name:        "host",
-						DefaultText: "localhost",
-						Usage:       "server host",
+						Name:  "host",
+						Value: "localhost",
+						Usage: "server host",
 					},
 					&cli.IntFlag{
-						Name:        "port",
-						DefaultText: "8080",
-						Usage:       "server port",
+						Name:  "port",
+						Value: 8080,
+						Usage: "server port",
 					},
 					&cli.StringFlag{
-						Name:        "baseuri",
-						DefaultText: "/",
-						Usage:       "base uri",
+						Name:  "baseuri",
+						Value: "/",
+						Usage: "base uri",
 					},
 				},
 				Action: func(c *cli.Context) error {
 					r := mux.NewRouter()
 					r.HandleFunc("/{year:[0-9]+}/{month:[0-9]+}/{day:[0-9]+}", func(http.ResponseWriter, *http.Request) {
-
+						println("hoge")
 					})
-					http.Handle("/", r)
-					return nil
+					addr := c.String("host")
+					if c.Int("port") > 0 {
+						addr = fmt.Sprintf("%s:%d", c.String("host"), c.Int("port"))
+					}
+					println(fmt.Sprintf("start gengou server on %s", addr))
+					return http.ListenAndServe(addr, r)
 				},
 			},
 		},
