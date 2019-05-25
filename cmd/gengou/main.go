@@ -3,9 +3,11 @@ package main
 import (
 	"errors"
 	"fmt"
+	"net/http"
 	"os"
 
 	"github.com/deadcheat/gengou"
+	"github.com/gorilla/mux"
 	"gopkg.in/urfave/cli.v2"
 )
 
@@ -45,7 +47,29 @@ func main() {
 				Name:    "server",
 				Aliases: []string{"s"},
 				Usage:   "start gengou server that serves JSON Response with /year/month/day url",
+				Flags: []cli.Flag{
+					&cli.StringFlag{
+						Name:        "host",
+						DefaultText: "localhost",
+						Usage:       "server host",
+					},
+					&cli.IntFlag{
+						Name:        "port",
+						DefaultText: "8080",
+						Usage:       "server port",
+					},
+					&cli.StringFlag{
+						Name:        "baseuri",
+						DefaultText: "/",
+						Usage:       "base uri",
+					},
+				},
 				Action: func(c *cli.Context) error {
+					r := mux.NewRouter()
+					r.HandleFunc("/{year:[0-9]+}/{month:[0-9]+}/{day:[0-9]+}", func(http.ResponseWriter, *http.Request) {
+
+					})
+					http.Handle("/", r)
 					return nil
 				},
 			},
