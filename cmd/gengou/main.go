@@ -12,11 +12,11 @@ import (
 func main() {
 	app := cli.App{
 		Name:    "gengou",
-		Version: "0.0.1",
+		Version: "0.1.0",
 		Commands: []*cli.Command{
 			&cli.Command{
 				Name:    "standalone",
-				Aliases: []string{"s"},
+				Aliases: []string{"a"},
 				Usage:   "give me year/month/day formatted string, gengou answers gengou to you!!",
 				Action: func(c *cli.Context) error {
 					args := c.Args().Slice()
@@ -38,6 +38,14 @@ func main() {
 						fmt.Println(gengos[i].Name)
 					}
 
+					return nil
+				},
+			},
+			&cli.Command{
+				Name:    "server",
+				Aliases: []string{"s"},
+				Usage:   "start gengou server that serves JSON Response with /year/month/day url",
+				Action: func(c *cli.Context) error {
 					return nil
 				},
 			},
