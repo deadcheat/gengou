@@ -70,7 +70,6 @@ func main() {
 					r.HandleFunc("/{year:[0-9]+}/{month:[0-9]+}/{day:[0-9]+}", func(res http.ResponseWriter, req *http.Request) {
 						vars := mux.Vars(req)
 						date := fmt.Sprintf("%s/%s/%s", vars["year"], vars["month"], vars["day"])
-						println("hoge", date)
 						gengous, err := gengou.Find(date)
 						if err != nil {
 							res.WriteHeader(http.StatusNotFound)
