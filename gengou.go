@@ -7,7 +7,7 @@ import (
 
 // Gengou is an entity of 元号
 type Gengou struct {
-	C    GengouCode `json:"code"`
+	C    GengouCode `json:"-"`
 	Name string     `json:"name"`
 	Kana []string   `json:"kana"`
 	From time.Time  `json:"from"`
