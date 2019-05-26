@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"errors"
 	"fmt"
 	"net/http"
@@ -66,8 +67,24 @@ func main() {
 				},
 				Action: func(c *cli.Context) error {
 					r := mux.NewRouter()
-					r.HandleFunc("/{year:[0-9]+}/{month:[0-9]+}/{day:[0-9]+}", func(http.ResponseWriter, *http.Request) {
-						println("hoge")
+					r.HandleFunc("/{year:[0-9]+}/{month:[0-9]+}/{day:[0-9]+}", func(res http.ResponseWriter, req *http.Request) {
+						vars := mux.Vars(req)
+						date := fmt.Sprintf("%s/%s/%s", vars["year"], vars["month"], vars["day"])
+						println("hoge", date)
+						gengous, err := gengou.Find(date)
+						if err != nil {
+							res.WriteHeader(http.StatusNotFound)
+							return
+						}
+						data, err := json.Marshal(GengouResponse{Gengous: gengous})
+						if err != nil {
+							res.WriteHeader(http.StatusInternalServerError)
+							return
+						}
+						res.WriteHeader(http.StatusOK)
+						res.Header().Set("Content-Type", "application/json")
+						res.Write(data)
+						return
 					})
 					addr := c.String("host")
 					if c.Int("port") > 0 {
@@ -84,4 +101,8 @@ func main() {
 		os.Exit(1)
 	}
 	os.Exit(0)
+}
+
+type GengouResponse struct {
+	Gengous []gengou.Gengou `json:"gengous"`
 }
